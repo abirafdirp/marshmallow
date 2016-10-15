@@ -357,6 +357,8 @@ class BaseSchema(base.SchemaABC):
         self._normalize_nested_options()
         self._update_fields(many=many)
 
+        self.partial_validate = None
+
     def __repr__(self):
         return '<{ClassName}(many={self.many}, strict={self.strict})>'.format(
             ClassName=self.__class__.__name__, self=self
@@ -604,7 +606,7 @@ class BaseSchema(base.SchemaABC):
 
         .. versionadded:: 1.1.0
         """
-        self.partial = partial
+        self.partial_validate = partial
         _, errors = self._do_load(data, many, partial=partial, postprocess=False)
         return errors
 
