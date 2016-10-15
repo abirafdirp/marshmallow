@@ -604,6 +604,7 @@ class BaseSchema(base.SchemaABC):
 
         .. versionadded:: 1.1.0
         """
+        self.partial = partial
         _, errors = self._do_load(data, many, partial=partial, postprocess=False)
         return errors
 
